@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import FirstPage from './FirstPage/FirstPage';
 import reportWebVitals from './reportWebVitals';
-
-import CssBaseline from '@material-ui/core/CssBaseline';
 
 
 ReactDOM.render(
   <React.Fragment>
-    <CssBaseline/>
-    <App />
+    <FirstPage />
   </React.Fragment>,
   document.getElementById('root')
 );

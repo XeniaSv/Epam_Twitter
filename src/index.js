@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import FirstPage from './FirstPage/FirstPage';
+
+import { Router } from "react-router-dom";
+import {createBrowserHistory} from 'history';
 import reportWebVitals from './reportWebVitals';
 
+import App from './App';
+
+const history = createBrowserHistory()
 
 ReactDOM.render(
-  <React.Fragment>
-    <FirstPage />
-  </React.Fragment>,
+  <Router history={history}>
+    <App />
+  </Router>,
   document.getElementById('root')
 );
 

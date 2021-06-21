@@ -15,7 +15,7 @@ h1 {
     margin-left: auto;
 }
 
-main {
+.first-page-main {
     display: flex;
     flex-direction: column;
     align-items: center;

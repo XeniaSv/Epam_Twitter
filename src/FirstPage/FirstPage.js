@@ -18,7 +18,7 @@ class FirstPage extends React.Component {
         <InfoButton className="info-button"/>
       </header>
 
-      <main>
+      <main className="first-page-main">
         <div className="h1-and-icon">
           <h1>Mini Twitter</h1>
           <img className="twitter" src={twitterImg}/>

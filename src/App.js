@@ -1,15 +1,20 @@
 import React from 'react';
 
-import './App.css';
-import Button from '@material-ui/core/Button';
+import { Route, Switch, Redirect } from "react-router-dom"
 
+import FirstPage from './FirstPage/FirstPage';
+import TwittPage from './TwittPage/TwittPage';
 
-function App() {
-   return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+class App extends React.Component {
+    render () {
+        return (
+            <Switch>
+                <Route history={history} path='/home' component={FirstPage}/>
+                <Route history={history} path='/search' component={TwittPage}/>
+                <Redirect from='/' to='home'/>
+            </Switch>
+        )
+    }
 }
 
 export default App;

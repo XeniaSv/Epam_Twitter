@@ -1,0 +1,82 @@
+.twittPage-main {
+    background-color:#e3f2fd;
+    width: 90%;
+    margin: 65px auto 0;
+}
+
+#avatar {
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+h1 {
+    margin-top: 15px;
+    color:#0C0639;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 800;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: #424242;
+    font-weight: 100;
+}
+
+blockquote {
+    margin-top: 15px;
+    text-align: center;
+    color: #0C0639;
+    
+}
+
+.account-info {
+    color: #424242;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1fr;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cal-img {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+}
+
+hr {
+    background-color: #42a5f5;
+    opacity: 0.5;
+    margin-top: 30px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.statistics-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+    .account-info {
+        grid-template-columns: 1fr;
+    }
+    .statistics {
+        flex-direction: column;
+    }
+}

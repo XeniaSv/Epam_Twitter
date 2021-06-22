@@ -6,3 +6,5 @@
 Задание выдано во время прохождения практики в EPAM на направлении front-end.
 
 ## Доступ
+
+[GitHub Pages](https://xeniasv.github.io/Epam_Twitter/)

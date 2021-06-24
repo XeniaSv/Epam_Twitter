@@ -16,10 +16,15 @@ const blueTheme = createMuiTheme({
 })
 
 class SearchButton extends React.Component {
+    handlerOnClick() {
+        let value = document.querySelector(".search-text-field").querySelector("input").value;
+        localStorage.setItem("searchValue", value);
+    }
+
     render(){
         return (
             <MuiThemeProvider theme={blueTheme}>
-                <Button className="search-button" variant="contained" color="primary" href="/search">Найти</Button>
+                <Button className="search-button" variant="contained" color="primary" href="/search" onClick={this.handlerOnClick}>Найти</Button>
             </MuiThemeProvider>
         )
     }

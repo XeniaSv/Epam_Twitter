@@ -5,6 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CalImg from '../resource/calendar.svg';
 import Twitt from './Twitt';
 
+
 class TwittPage extends React.Component {
     render() {
         return(

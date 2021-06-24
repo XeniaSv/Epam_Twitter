@@ -71,6 +71,14 @@ const useStyles = makeStyles((theme) => ({
 export default function SearchAppBar() {
   const classes = useStyles();
 
+  function keyPress(e) {
+    if (e.keyCode == 13) {
+      let value = document.querySelector("#search").value;
+      localStorage.setItem("searchValue", value);
+      window.open("/search", "_self")
+    }
+  }
+
   return (
       <AppBar position="static" className={classes.root}>
         <Toolbar>
@@ -91,12 +99,14 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
+              id="search"
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onKeyDown={keyPress}
             />
           </div>
         </Toolbar>

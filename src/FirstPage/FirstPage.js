@@ -10,7 +10,16 @@ import SearchButton from './SearchButton';
 import InfoButton from './InfoButton';
 
 
+
 class FirstPage extends React.Component {
+  keyPress(e) {
+    if (e.keyCode == 13) {
+      let value = document.querySelector(".search-text-field").querySelector("input").value;
+      localStorage.setItem("searchValue", value);
+      window.open("/search", "_self")
+    }
+  }
+
   render(){
     return (
     <>
@@ -35,6 +44,7 @@ class FirstPage extends React.Component {
                 </InputAdornment>
               ),
             }}
+            onKeyDown={this.keyPress}
           />
           <SearchButton/>
         </div>

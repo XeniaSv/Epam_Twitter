@@ -1,12 +1,13 @@
-import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import SearchIcon from '@material-ui/icons/Search';
+
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     right: theme.spacing(0),
     left: theme.spacing(0),
-    backgroundColor:"#42a5f5"
+    backgroundColor: '#42a5f5',
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -72,44 +73,43 @@ export default function SearchAppBar() {
   const classes = useStyles();
 
   function keyPress(e) {
-    if (e.keyCode == 13) {
-      let value = document.querySelector("#search").value;
-      localStorage.setItem("searchValue", value);
-      window.open("/search", "_self")
+    const value = document.querySelector('#search').value.trim();
+    if (e.keyCode === 13 && value.length !== 0) {
+      localStorage.setItem('searchValue', value);
+      window.open('/search', '_self');
     }
   }
 
   return (
-      <AppBar position="static" className={classes.root}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-            href="/home">
-
-            <ArrowBackIosIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Mini Twitter
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              id="search"
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              onKeyDown={keyPress}
-            />
+    <AppBar position="static" className={classes.root}>
+      <Toolbar>
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          href="/home"
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+        <Typography className={classes.title} variant="h6" noWrap>
+          Mini Twitter
+        </Typography>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
           </div>
-        </Toolbar>
-      </AppBar>
+          <InputBase
+            id="search"
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+            onKeyDown={keyPress}
+          />
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 }

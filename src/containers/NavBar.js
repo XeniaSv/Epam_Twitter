@@ -68,7 +68,7 @@ export default function SearchAppBar() {
           edge="start"
           className={classes.menuButton}
           color="inherit"
-          href="/home"
+          href={`${process.env.PUBLIC_URL}/home`}
         >
           <ArrowBackIosIcon />
         </IconButton>

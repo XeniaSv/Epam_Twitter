@@ -36,7 +36,7 @@ class SearchButton extends React.Component {
           className="search-button"
           variant="contained"
           color="primary"
-          href="/search"
+          href={`${process.env.PUBLIC_URL}/search`}
           onClick={this.handlerOnClick}
         >
           Найти

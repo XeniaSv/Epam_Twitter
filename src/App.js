@@ -11,7 +11,7 @@ class App extends React.Component {
           <Switch>
             <Route history={history} path="/home" component={FirstPage} />
             <Route history={history} path="/search" component={TwittPage} />
-            <Redirect from="/" to="home" />
+            <Redirect from="/" to="/home" />
           </Switch>
         );
     }

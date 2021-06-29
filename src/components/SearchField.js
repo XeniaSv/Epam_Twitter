@@ -43,7 +43,7 @@ class SearchField extends React.Component {
       && users.some((doc) => doc.id === value)
     ) {
       localStorage.setItem('searchValue', value);
-      window.open('/search', '_self');
+      window.open(`${process.env.PUBLIC_URL}/search`, '_self');
     } else if (
       e.keyCode === 13
       && value.length !== 0

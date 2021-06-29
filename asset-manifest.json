@@ -1,25 +1,24 @@
 {
   "files": {
-    "main.css": "/Epam_Twitter/static/css/main.5d91d812.chunk.css",
-    "main.js": "/Epam_Twitter/static/js/main.db8b0cb3.chunk.js",
-    "main.js.map": "/Epam_Twitter/static/js/main.db8b0cb3.chunk.js.map",
-    "runtime-main.js": "/Epam_Twitter/static/js/runtime-main.aef2eb42.js",
-    "runtime-main.js.map": "/Epam_Twitter/static/js/runtime-main.aef2eb42.js.map",
-    "static/js/2.6517e9e4.chunk.js": "/Epam_Twitter/static/js/2.6517e9e4.chunk.js",
-    "static/js/2.6517e9e4.chunk.js.map": "/Epam_Twitter/static/js/2.6517e9e4.chunk.js.map",
-    "static/js/3.403caa2d.chunk.js": "/Epam_Twitter/static/js/3.403caa2d.chunk.js",
-    "static/js/3.403caa2d.chunk.js.map": "/Epam_Twitter/static/js/3.403caa2d.chunk.js.map",
+    "main.css": "/Epam_Twitter/static/css/main.cd332c96.chunk.css",
+    "main.js": "/Epam_Twitter/static/js/main.ed7be8e5.chunk.js",
+    "main.js.map": "/Epam_Twitter/static/js/main.ed7be8e5.chunk.js.map",
+    "runtime-main.js": "/Epam_Twitter/static/js/runtime-main.4c88df34.js",
+    "runtime-main.js.map": "/Epam_Twitter/static/js/runtime-main.4c88df34.js.map",
+    "static/js/2.09dd1991.chunk.js": "/Epam_Twitter/static/js/2.09dd1991.chunk.js",
+    "static/js/2.09dd1991.chunk.js.map": "/Epam_Twitter/static/js/2.09dd1991.chunk.js.map",
+    "static/js/3.557cb9ce.chunk.js": "/Epam_Twitter/static/js/3.557cb9ce.chunk.js",
+    "static/js/3.557cb9ce.chunk.js.map": "/Epam_Twitter/static/js/3.557cb9ce.chunk.js.map",
     "index.html": "/Epam_Twitter/index.html",
-    "static/css/main.5d91d812.chunk.css.map": "/Epam_Twitter/static/css/main.5d91d812.chunk.css.map",
-    "static/js/2.6517e9e4.chunk.js.LICENSE.txt": "/Epam_Twitter/static/js/2.6517e9e4.chunk.js.LICENSE.txt",
-    "static/media/calendar.e64874b6.svg": "/Epam_Twitter/static/media/calendar.e64874b6.svg",
-    "static/media/twitter.772ae451.jpg": "/Epam_Twitter/static/media/twitter.772ae451.jpg",
-    "static/media/twitter.88d497cc.svg": "/Epam_Twitter/static/media/twitter.88d497cc.svg"
+    "static/css/main.cd332c96.chunk.css.map": "/Epam_Twitter/static/css/main.cd332c96.chunk.css.map",
+    "static/js/2.09dd1991.chunk.js.LICENSE.txt": "/Epam_Twitter/static/js/2.09dd1991.chunk.js.LICENSE.txt",
+    "static/media/calendar.ce421b1b.svg": "/Epam_Twitter/static/media/calendar.ce421b1b.svg",
+    "static/media/twitter.69921557.svg": "/Epam_Twitter/static/media/twitter.69921557.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.aef2eb42.js",
-    "static/js/2.6517e9e4.chunk.js",
-    "static/css/main.5d91d812.chunk.css",
-    "static/js/main.db8b0cb3.chunk.js"
+    "static/js/runtime-main.4c88df34.js",
+    "static/js/2.09dd1991.chunk.js",
+    "static/css/main.cd332c96.chunk.css",
+    "static/js/main.ed7be8e5.chunk.js"
   ]
 }

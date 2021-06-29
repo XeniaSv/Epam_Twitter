@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Route, Switch, Redirect } from 'react-router-dom';
 
-import FirstPage from './FirstPage/FirstPage';
-import TwittPage from './TwittPage/TwittPage';
+import FirstPage from './pages/FirstPage';
+import TwittPage from './pages/TwittPage';
 
 class App extends React.Component {
-    render () {
+    render() {
         return (
-            <Switch>
-                <Route history={history} path='/home' component={FirstPage}/>
-                <Route history={history} path='/search' component={TwittPage}/>
-                <Redirect from='/' to='home'/>
-            </Switch>
-        )
+          <Switch>
+            <Route history={history} path="/home" component={FirstPage} />
+            <Route history={history} path="/search" component={TwittPage} />
+            <Redirect from="/" to="home" />
+          </Switch>
+        );
     }
 }
 

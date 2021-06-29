@@ -32,7 +32,9 @@ class TwittPage extends React.Component {
 
   componentDidMount() {
     const db = firebase.firestore();
-    const id = localStorage.getItem('searchValue');
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get('searchValue');
     db.collection('users')
       .doc(id)
       .get()

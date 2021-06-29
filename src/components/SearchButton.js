@@ -2,6 +2,9 @@ import Button from '@material-ui/core/Button';
 import blue from '@material-ui/core/colors/blue';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+import firebase from 'firebase';
+import 'firebase/firestore';
+
 import React from 'react';
 
 const blueTheme = createMuiTheme({
@@ -18,7 +21,23 @@ const blueTheme = createMuiTheme({
 class SearchButton extends React.Component {
   constructor() {
     super();
-    this.handlerOnClick = this.handlerOnClick.bind(this);
+    this.state = {
+      users: [],
+    };
+  }
+
+  componentDidMount() {
+    const db = firebase.firestore();
+    db.collection('users')
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const { users } = this.state;
+          const array = users.slice();
+          array.push({ id: doc.id });
+          this.setState({ users: array });
+        });
+      });
   }
 
   handlerOnClick = () => {
@@ -26,7 +45,18 @@ class SearchButton extends React.Component {
       .querySelector('.search-text-field')
       .querySelector('input')
       .value.trim();
-    localStorage.setItem('searchValue', value);
+    const { users } = this.state;
+    if (
+      value.length !== 0
+      && users.some((doc) => doc.id === value)
+    ) {
+      window.open(`${process.env.PUBLIC_URL}/search?searchValue=${value}`, '_self');
+    } else if (
+      value.length !== 0
+      && !users.some((doc) => doc.id === value)
+    ) {
+      alert('Данного пользователя невозможно найти.');
+    }
   };
 
   render() {
@@ -36,7 +66,6 @@ class SearchButton extends React.Component {
           className="search-button"
           variant="contained"
           color="primary"
-          href={`${process.env.PUBLIC_URL}/search`}
           onClick={this.handlerOnClick}
         >
           Найти

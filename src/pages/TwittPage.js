@@ -1,7 +1,9 @@
 import './TwittPage.css';
 
+import Formater from '../components/Formater';
+
 import NavBar from '../containers/NavBar';
-import Twitt from '../containers/Twitt';
+import Tweet from '../containers/Tweet';
 import CalImg from '../resource/calendar.svg';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -24,6 +26,7 @@ class TwittPage extends React.Component {
       Followers: 'Loading...',
       Quote: 'Loading...',
       Image: '',
+      TweetsId: [],
     };
   }
 
@@ -41,26 +44,21 @@ class TwittPage extends React.Component {
           Name: data.Name,
           ID: doc.id,
           Joined: date,
-          Following: this.FollowersAndFollowingFormat(data.Following),
-          Followers: this.FollowersAndFollowingFormat(data.Followers),
+          Following: Formater(data.Following),
+          Followers: Formater(data.Followers),
           Quote: this.QuoteCheck(data.Quote),
           Image: data.Image,
         });
+    });
+    db.collection(`${id}Tweets`).get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const { TweetsId } = this.state;
+        const array = TweetsId.slice();
+        array.push(doc.id);
+        this.setState({ TweetsId: array });
       });
+    });
   }
-
-  FollowersAndFollowingFormat = (labelValue) =>
-    // Nine Zeroes for Billions
-     (Math.abs(Number(labelValue)) >= 1.0e9
-      ? `${Math.abs(Number(labelValue)) / 1.0e9}B`
-      : // Six Zeroes for Millions
-      Math.abs(Number(labelValue)) >= 1.0e6
-      ? `${Math.abs(Number(labelValue)) / 1.0e6}M`
-      : // Three Zeroes for Thousands
-      Math.abs(Number(labelValue)) >= 1.0e3
-      ? `${Math.abs(Number(labelValue)) / 1.0e3}K`
-      : Math.abs(Number(labelValue)))
-  ;
 
   QuoteCheck = (quote) => {
     if (quote.length === 0) {
@@ -72,8 +70,15 @@ class TwittPage extends React.Component {
 
   render() {
     const {
- Name, ID, Joined, Following, Followers, Quote, Image,
-} = this.state;
+      Name,
+      ID,
+      Joined,
+      Following,
+      Followers,
+      Quote,
+      Image,
+      TweetsId,
+    } = this.state;
     return (
       <>
         <NavBar />
@@ -84,7 +89,7 @@ class TwittPage extends React.Component {
           <blockquote>{Quote}</blockquote>
           <div className="account-info">
             <div className="container">
-              <img id="cal-img" alt="User Image" src={CalImg} />
+              <img id="cal-img" alt="User" src={CalImg} />
               <p>
                 &nbsp; Joined
                 {Joined}
@@ -101,8 +106,9 @@ class TwittPage extends React.Component {
           </div>
           <hr />
 
-          <Twitt hasImage="yes" />
-          <Twitt hasImage="no" />
+          {TweetsId.map((id) => (
+            <Tweet name={Name} userId={ID} avatar={Image} docId={id} />
+          ))}
         </main>
       </>
     );

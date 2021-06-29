@@ -63,5 +63,5 @@
         }
     },
 
-    "ignorePatterns": ["/build/*", "/src/pages/TwittPage.js", "/src/App.js"]
+    "ignorePatterns": ["/build/*", "/src/components/Formater.js", "/src/App.js"]
 }

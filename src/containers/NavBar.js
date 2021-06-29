@@ -1,7 +1,8 @@
+import SearchField from '../components/SearchField';
+
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
@@ -23,18 +24,13 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     display: 'none',
-    marginLeft: theme.spacing(15),
+    marginLeft: theme.spacing(23),
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -51,34 +47,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  inputRoot: {
-    color: 'inherit',
-  },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
+      width: '25ch',
     },
   },
 }));
 
 export default function SearchAppBar() {
   const classes = useStyles();
-
-  function keyPress(e) {
-    const value = document.querySelector('#search').value.trim();
-    if (e.keyCode === 13 && value.length !== 0) {
-      localStorage.setItem('searchValue', value);
-      window.open('/search', '_self');
-    }
-  }
 
   return (
     <AppBar position="static" className={classes.root}>
@@ -98,16 +79,7 @@ export default function SearchAppBar() {
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
-          <InputBase
-            id="search"
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-            onKeyDown={keyPress}
-          />
+          <SearchField className={classes.inputInput} />
         </div>
       </Toolbar>
     </AppBar>

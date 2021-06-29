@@ -1,8 +1,8 @@
 import Comment from '../components/Comment';
 
-import '../pages/TwittPage.css';
+import Formater from '../components/Formater';
 
-import Img from '../resource/twitter.jpg';
+import '../pages/TwittPage.css';
 
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
@@ -21,8 +21,14 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ReplyIcon from '@material-ui/icons/Reply';
 
 import clsx from 'clsx';
+
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+import moment from 'moment';
+
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,16 +79,44 @@ const useStyles = makeStyles((theme) => ({
 
 function RecipeReviewCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [state, setState] = useState({
+     date: 'Loading...',
+     image: '',
+     likes: 'Loading...',
+     retweet: 'Loading...',
+     text: 'Loading...',
+  });
+  const {
+    name,
+    userId,
+    avatar,
+    docId,
+  } = props;
+
+  useEffect(() => {
+    const db = firebase.firestore();
+    db.collection(`${userId}Tweets`).doc(docId).get().then((doc) => {
+      const data = doc.data();
+      const twittDate = moment(data.Date.seconds * 1000).format('hh:mm, MMMM DD, YYYY');
+      setState({
+        date: twittDate,
+        image: data.Image,
+        likes: Formater(data.Likes),
+        retweet: Formater(data.Retweet),
+        text: data.Text,
+      });
+    });
+  });
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const returnImage = () => {
-    if (props.hasImage === 'yes') {
+    if (state.image !== '') {
       return (
-        <CardMedia className={classes.media} image={Img} title="Paella dish" />
+        <CardMedia className={classes.media} image={state.image} title="Image" />
       );
     }
     return null;
@@ -91,32 +125,30 @@ function RecipeReviewCard(props) {
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={<Avatar className={classes.avatar}>R</Avatar>}
-        title="Литература @literabook"
-        subheader="September 14, 2016"
+        avatar={<Avatar className={classes.avatar} src={avatar} />}
+        title={`${name} ${userId}`}
+        subheader={state.date}
       />
 
       {returnImage()}
 
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {state.text}
         </Typography>
       </CardContent>
 
       <CardActions disableSpacing className="statistics">
         <div className="statistics-container">
           <p className={classes.text}>
-            <b>74</b>
+            <b>{state.likes}</b>
             Likes
           </p>
           <FavoriteIcon className={classes.like} />
         </div>
         <div className="statistics-container">
           <p className={classes.text}>
-            <b>15</b>
+            <b>{state.retweet}</b>
             Retweets
           </p>
           <ReplyIcon className={classes.reply} />
@@ -152,11 +184,17 @@ function RecipeReviewCard(props) {
 }
 
 RecipeReviewCard.defaultProps = {
-  hasImage: '',
+  name: '',
+  userId: '',
+  avatar: '',
+  docId: '',
 };
 
 RecipeReviewCard.propTypes = {
-  hasImage: PropTypes.string,
+  name: PropTypes.string,
+  userId: PropTypes.string,
+  avatar: PropTypes.string,
+  docId: PropTypes.string,
 };
 
 export default RecipeReviewCard;

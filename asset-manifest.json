@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/Epam_Twitter/static/css/main.cd332c96.chunk.css",
-    "main.js": "/Epam_Twitter/static/js/main.98857b17.chunk.js",
-    "main.js.map": "/Epam_Twitter/static/js/main.98857b17.chunk.js.map",
-    "runtime-main.js": "/Epam_Twitter/static/js/runtime-main.22ccd758.js",
-    "runtime-main.js.map": "/Epam_Twitter/static/js/runtime-main.22ccd758.js.map",
-    "static/js/2.e20238e3.chunk.js": "/Epam_Twitter/static/js/2.e20238e3.chunk.js",
-    "static/js/2.e20238e3.chunk.js.map": "/Epam_Twitter/static/js/2.e20238e3.chunk.js.map",
-    "static/js/3.4094e12f.chunk.js": "/Epam_Twitter/static/js/3.4094e12f.chunk.js",
-    "static/js/3.4094e12f.chunk.js.map": "/Epam_Twitter/static/js/3.4094e12f.chunk.js.map",
+    "main.js": "/Epam_Twitter/static/js/main.e93a8ed9.chunk.js",
+    "main.js.map": "/Epam_Twitter/static/js/main.e93a8ed9.chunk.js.map",
+    "runtime-main.js": "/Epam_Twitter/static/js/runtime-main.b52d9b89.js",
+    "runtime-main.js.map": "/Epam_Twitter/static/js/runtime-main.b52d9b89.js.map",
+    "static/js/2.1769d91b.chunk.js": "/Epam_Twitter/static/js/2.1769d91b.chunk.js",
+    "static/js/2.1769d91b.chunk.js.map": "/Epam_Twitter/static/js/2.1769d91b.chunk.js.map",
+    "static/js/3.2939d076.chunk.js": "/Epam_Twitter/static/js/3.2939d076.chunk.js",
+    "static/js/3.2939d076.chunk.js.map": "/Epam_Twitter/static/js/3.2939d076.chunk.js.map",
     "index.html": "/Epam_Twitter/index.html",
     "static/css/main.cd332c96.chunk.css.map": "/Epam_Twitter/static/css/main.cd332c96.chunk.css.map",
-    "static/js/2.e20238e3.chunk.js.LICENSE.txt": "/Epam_Twitter/static/js/2.e20238e3.chunk.js.LICENSE.txt",
+    "static/js/2.1769d91b.chunk.js.LICENSE.txt": "/Epam_Twitter/static/js/2.1769d91b.chunk.js.LICENSE.txt",
     "static/media/calendar.ce421b1b.svg": "/Epam_Twitter/static/media/calendar.ce421b1b.svg",
     "static/media/twitter.69921557.svg": "/Epam_Twitter/static/media/twitter.69921557.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.22ccd758.js",
-    "static/js/2.e20238e3.chunk.js",
+    "static/js/runtime-main.b52d9b89.js",
+    "static/js/2.1769d91b.chunk.js",
     "static/css/main.cd332c96.chunk.css",
-    "static/js/main.98857b17.chunk.js"
+    "static/js/main.e93a8ed9.chunk.js"
   ]
 }

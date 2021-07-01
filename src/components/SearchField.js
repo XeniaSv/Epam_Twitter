@@ -1,8 +1,8 @@
+import { pathSearch } from '../config';
+import GetUsersData from '../helpers/GetUsersData';
+
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-
-import firebase from 'firebase';
-import 'firebase/firestore';
 
 import PropTypes from 'prop-types';
 
@@ -18,35 +18,22 @@ class SearchField extends React.Component {
   }
 
   componentDidMount() {
-    const db = firebase.firestore();
-    db.collection('users')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const { users } = this.state;
-          const array = users.slice();
-          array.push({ id: doc.id });
-          this.setState({ users: array });
-        });
-      });
+    const array = GetUsersData();
+    this.setState({ users: array });
   }
 
   keyPress = (e) => {
-    const value = document
-      .querySelector(`.${this.className}`)
-      .querySelector('input')
-      .value.trim();
+    const value = e.target.value.trim();
     const { users } = this.state;
     if (
       e.keyCode === 13
       && value.length !== 0
       && users.some((doc) => doc.id === value)
     ) {
-      window.open(`${process.env.PUBLIC_URL}/search?searchValue=${value}`, '_self');
+      window.open(`${process.env.PUBLIC_URL}${pathSearch}?searchValue=${value}`, '_self');
     } else if (
       e.keyCode === 13
       && value.length !== 0
-      && !users.some((doc) => doc.id === value)
     ) {
       alert('Данного пользователя невозможно найти.');
     }
@@ -57,7 +44,6 @@ class SearchField extends React.Component {
     return (
       <Autocomplete
         className={this.className}
-        freeSolo
         disableClearable
         autoComplete
         options={users.map((user) => user.id)}

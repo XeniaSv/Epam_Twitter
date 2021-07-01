@@ -174,8 +174,6 @@ function RecipeReviewCard(props) {
         <CardContent>
           <Typography paragraph>
             <Comment />
-            <Comment />
-            <Comment />
           </Typography>
         </CardContent>
       </Collapse>

@@ -1,9 +1,9 @@
+import { pathSearch } from '../config';
+import GetUsersData from '../helpers/GetUsersData';
+
 import Button from '@material-ui/core/Button';
 import blue from '@material-ui/core/colors/blue';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
-import firebase from 'firebase';
-import 'firebase/firestore';
 
 import React from 'react';
 
@@ -27,17 +27,8 @@ class SearchButton extends React.Component {
   }
 
   componentDidMount() {
-    const db = firebase.firestore();
-    db.collection('users')
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const { users } = this.state;
-          const array = users.slice();
-          array.push({ id: doc.id });
-          this.setState({ users: array });
-        });
-      });
+    const array = GetUsersData();
+    this.setState({ users: array });
   }
 
   handlerOnClick = () => {
@@ -50,10 +41,9 @@ class SearchButton extends React.Component {
       value.length !== 0
       && users.some((doc) => doc.id === value)
     ) {
-      window.open(`${process.env.PUBLIC_URL}/search?searchValue=${value}`, '_self');
+      window.open(`${process.env.PUBLIC_URL}${pathSearch}?searchValue=${value}`, '_self');
     } else if (
       value.length !== 0
-      && !users.some((doc) => doc.id === value)
     ) {
       alert('Данного пользователя невозможно найти.');
     }

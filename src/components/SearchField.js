@@ -17,8 +17,9 @@ class SearchField extends React.Component {
     this.className = props.className;
   }
 
-  componentDidMount() {
-    const array = GetUsersData();
+  async componentDidMount() {
+    const array = await GetUsersData();
+    console.log(array);
     this.setState({ users: array });
   }
 
@@ -46,6 +47,7 @@ class SearchField extends React.Component {
         className={this.className}
         disableClearable
         autoComplete
+        freeSolo
         options={users.map((user) => user.id)}
         renderInput={(params) => (
           <TextField

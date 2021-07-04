@@ -1,6 +1,6 @@
 import Comment from '../components/Comment';
 
-import Formater from '../components/Formater';
+import GetTweetData from '../helpers/GetTweetData';
 
 import '../pages/TwittPage.css';
 
@@ -21,11 +21,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ReplyIcon from '@material-ui/icons/Reply';
 
 import clsx from 'clsx';
-
-import firebase from 'firebase';
-import 'firebase/firestore';
-
-import moment from 'moment';
 
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
@@ -87,6 +82,7 @@ function RecipeReviewCard(props) {
      retweet: 'Loading...',
      text: 'Loading...',
   });
+
   const {
     name,
     userId,
@@ -94,19 +90,9 @@ function RecipeReviewCard(props) {
     docId,
   } = props;
 
-  useEffect(() => {
-    const db = firebase.firestore();
-    db.collection(`${userId}Tweets`).doc(docId).get().then((doc) => {
-      const data = doc.data();
-      const twittDate = moment(data.Date.seconds * 1000).format('hh:mm, MMMM DD, YYYY');
-      setState({
-        date: twittDate,
-        image: data.Image,
-        likes: Formater(data.Likes),
-        retweet: Formater(data.Retweet),
-        text: data.Text,
-      });
-    });
+  useEffect(async () => {
+    const data = await GetTweetData(userId, docId);
+    setState(data);
   });
 
   const handleExpandClick = () => {

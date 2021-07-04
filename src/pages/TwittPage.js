@@ -1,17 +1,12 @@
 import './TwittPage.css';
 
-import Formater from '../components/Formater';
-
 import NavBar from '../containers/NavBar';
 import Tweet from '../containers/Tweet';
+import GetTweetsId from '../helpers/GetTweetsId';
+import GetUserData from '../helpers/GetUserData';
 import CalImg from '../resource/calendar.svg';
 
 import Avatar from '@material-ui/core/Avatar';
-
-import firebase from 'firebase';
-import 'firebase/firestore';
-
-import moment from 'moment';
 
 import React from 'react';
 
@@ -30,45 +25,13 @@ class TwittPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const db = firebase.firestore();
+  async componentDidMount() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('searchValue');
-    db.collection('users')
-      .doc(id)
-      .get()
-      .then((doc) => {
-        const data = doc.data();
-        const date = moment(data.Joined.seconds * 1000).format('MMMM YYYY');
-
-        this.setState({
-          Name: data.Name,
-          ID: doc.id,
-          Joined: date,
-          Following: Formater(data.Following),
-          Followers: Formater(data.Followers),
-          Quote: this.QuoteCheck(data.Quote),
-          Image: data.Image,
-        });
-    });
-    db.collection(`${id}Tweets`).get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        const { TweetsId } = this.state;
-        const array = TweetsId.slice();
-        array.push(doc.id);
-        this.setState({ TweetsId: array });
-      });
-    });
+    this.setState(await GetUserData(id));
+    this.setState(await GetTweetsId(id));
   }
-
-  QuoteCheck = (quote) => {
-    if (quote.length === 0) {
-      document.querySelector('blockquote').style.display = 'none';
-      return null;
-    }
-    return quote;
-  };
 
   render() {
     const {

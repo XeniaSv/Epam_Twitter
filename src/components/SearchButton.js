@@ -26,8 +26,8 @@ class SearchButton extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const array = GetUsersData();
+  async componentDidMount() {
+    const array = await GetUsersData();
     this.setState({ users: array });
   }
 

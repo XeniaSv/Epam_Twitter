@@ -1,3 +1,5 @@
+// Данная функция округляет большие значения для количества фолловеров, подписок, лайков, ретвитов.
+// Пример: 250000 <=> 250K
 export default function Formater(labelValue) {
     return (Math.abs(Number(labelValue)) >= 1.0e9
     ? `${Math.abs(Number(labelValue)) / 1.0e9}B`

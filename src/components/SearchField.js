@@ -1,5 +1,5 @@
 import { pathSearch } from '../config';
-import GetUsersData from '../helpers/GetUsersData';
+import GetUsersId from '../helpers/GetUsersId';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -18,8 +18,7 @@ class SearchField extends React.Component {
   }
 
   async componentDidMount() {
-    const array = await GetUsersData();
-    console.log(array);
+    const array = await GetUsersId();
     this.setState({ users: array });
   }
 

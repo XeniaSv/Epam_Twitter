@@ -1,5 +1,6 @@
 import Comment from '../components/Comment';
 
+import GetCommentsId from '../helpers/GetCommentsId';
 import GetTweetData from '../helpers/GetTweetData';
 
 import '../pages/TwittPage.css';
@@ -82,6 +83,7 @@ function RecipeReviewCard(props) {
      retweet: 'Loading...',
      text: 'Loading...',
   });
+  const [commentsState, setCommentsState] = useState([]);
 
   const {
     name,
@@ -91,9 +93,9 @@ function RecipeReviewCard(props) {
   } = props;
 
   useEffect(async () => {
-    const data = await GetTweetData(userId, docId);
-    setState(data);
-  });
+    setState(await GetTweetData(userId, docId));
+    setCommentsState(await GetCommentsId(userId, docId));
+  }, []);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -128,21 +130,21 @@ function RecipeReviewCard(props) {
         <div className="statistics-container">
           <p className={classes.text}>
             <b>{state.likes}</b>
-            Likes
+            &nbsp;Likes
           </p>
           <FavoriteIcon className={classes.like} />
         </div>
         <div className="statistics-container">
           <p className={classes.text}>
             <b>{state.retweet}</b>
-            Retweets
+            &nbsp;Retweets
           </p>
           <ReplyIcon className={classes.reply} />
         </div>
         <div className="statistics-container">
           <p className={classes.text}>
-            <b>157</b>
-            Comments
+            <b>{commentsState.length}</b>
+            &nbsp;Comments
           </p>
           <IconButton>
             <CommentIcon
@@ -159,7 +161,9 @@ function RecipeReviewCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            <Comment />
+            {commentsState.map((id) => (
+              <Comment userId={userId} tweetId={docId} commentId={id} />
+            ))}
           </Typography>
         </CardContent>
       </Collapse>

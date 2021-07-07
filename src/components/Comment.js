@@ -1,3 +1,5 @@
+import GetCommentData from '../helpers/GetCommentData';
+
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -5,8 +7,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { blue } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,20 +34,38 @@ const useStyles = makeStyles(() => ({
   },
 
   subheader: {
-    marginTop: '15px',
-    marginRight: '480px',
+    marginTop: '20px',
+    width: '200px',
+    textAlign: 'left',
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function CommentCard(props) {
   const classes = useStyles();
+
+  const [state, setState] = useState({
+    date: 'Loading...',
+    image: '',
+    text: 'Loading...',
+    name: 'Loading',
+  });
+
+  const {
+    userId,
+    tweetId,
+    commentId,
+  } = props;
+
+  useEffect(async () => {
+    setState(await GetCommentData(userId, tweetId, commentId));
+  }, []);
 
   return (
     <Card className={classes.root}>
       <CardHeader
-        avatar={<Avatar className={classes.avatar}>R</Avatar>}
-        title={<p className={classes.title}>Shrimp and Chorizo Paella</p>}
-        subheader={<p className={classes.subheader}>September 14, 2016</p>}
+        avatar={<Avatar className={classes.avatar} src={state.image} />}
+        title={<p className={classes.title}>{state.name}</p>}
+        subheader={<p className={classes.subheader}>{state.date}</p>}
       />
       <CardContent>
         <Typography
@@ -53,11 +74,21 @@ export default function RecipeReviewCard() {
           component="p"
           className={classes.text}
         >
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {state.text}
         </Typography>
       </CardContent>
     </Card>
   );
 }
+
+CommentCard.defaultProps = {
+  userId: '',
+  tweetId: '',
+  commentId: '',
+};
+
+CommentCard.propTypes = {
+  userId: PropTypes.string,
+  tweetId: PropTypes.string,
+  commentId: PropTypes.string,
+};

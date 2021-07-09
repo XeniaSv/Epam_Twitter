@@ -7,12 +7,16 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import FirstPage from './pages/FirstPage';
 import TwittPage from './pages/TwittPage';
 
+window.onhashchange = function() {
+  location.reload();
+}
+
 class App extends React.Component {
     render() {
         return (
           <Switch>
-            <Route history={history} path={pathHome} component={FirstPage} />
-            <Route history={history} path={pathSearch} component={TwittPage} />
+            <Route history={history} exact path={pathHome} component={FirstPage} />
+            <Route history={history} exact path={pathSearch} component={TwittPage} />
             <Redirect from="/" to={pathHome} />
           </Switch>
         );

@@ -26,9 +26,9 @@ class TwittPage extends React.Component {
   }
 
   async componentDidMount() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const id = urlParams.get('searchValue');
+    const myUrl = new URL(window.location.href.replace(/#/g, ''));
+    const id = myUrl.searchParams.get('searchValue');
+
     this.setState(await GetUserData(id));
     this.setState(await GetTweetsId(id));
   }

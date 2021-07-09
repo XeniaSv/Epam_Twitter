@@ -41,7 +41,8 @@ class SearchButton extends React.Component {
       value.length !== 0
       && users.some((doc) => doc.id === value)
     ) {
-      window.open(`${process.env.PUBLIC_URL}${pathSearch}?searchValue=${value}`, '_self');
+      window.open(`${process.env.PUBLIC_URL}#${pathSearch}?searchValue=${value}`, '_self');
+      window.location.reload();
     } else if (
       value.length !== 0
     ) {

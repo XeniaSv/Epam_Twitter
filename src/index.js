@@ -10,7 +10,7 @@ import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCdxtxrAle5FDE33LpqKFSSfVn5Kysvfic',
@@ -27,7 +27,7 @@ firebase.initializeApp(firebaseConfig);
 const history = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={history} basename={process.env.PUBLIC_URL}>
+  <Router history={history}>
     <App />
   </Router>,
   document.getElementById('root'),

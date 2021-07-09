@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Epam_Twitter/static/css/main.cd332c96.chunk.css",
-    "main.js": "/Epam_Twitter/static/js/main.f98c1e8b.chunk.js",
-    "main.js.map": "/Epam_Twitter/static/js/main.f98c1e8b.chunk.js.map",
+    "main.js": "/Epam_Twitter/static/js/main.5e9571e3.chunk.js",
+    "main.js.map": "/Epam_Twitter/static/js/main.5e9571e3.chunk.js.map",
     "runtime-main.js": "/Epam_Twitter/static/js/runtime-main.73c9cc0c.js",
     "runtime-main.js.map": "/Epam_Twitter/static/js/runtime-main.73c9cc0c.js.map",
     "static/js/2.d915f45b.chunk.js": "/Epam_Twitter/static/js/2.d915f45b.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.73c9cc0c.js",
     "static/js/2.d915f45b.chunk.js",
     "static/css/main.cd332c96.chunk.css",
-    "static/js/main.f98c1e8b.chunk.js"
+    "static/js/main.5e9571e3.chunk.js"
   ]
 }

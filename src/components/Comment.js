@@ -58,7 +58,7 @@ export default function CommentCard(props) {
 
   useEffect(async () => {
     setState(await GetCommentData(userId, tweetId, commentId));
-  }, []);
+  }, [userId, tweetId, commentId]);
 
   return (
     <Card className={classes.root}>

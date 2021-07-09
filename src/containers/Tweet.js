@@ -95,7 +95,7 @@ function RecipeReviewCard(props) {
   useEffect(async () => {
     setState(await GetTweetData(userId, docId));
     setCommentsState(await GetCommentsId(userId, docId));
-  }, []);
+  }, [userId, docId]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

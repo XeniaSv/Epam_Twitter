@@ -2,14 +2,9 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 export default async function GetUsersData() {
-  const arrayUsers = [];
   const db = firebase.firestore();
-  await db.collection('users')
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        arrayUsers.push({ id: doc.id });
-      });
-    });
-  return arrayUsers;
+  const snapshot = await db.collection('users')
+  .get();
+
+  return snapshot.docs.map((doc) => ({ id: doc.id }));
 }

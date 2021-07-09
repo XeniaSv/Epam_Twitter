@@ -3,13 +3,11 @@ import 'firebase/firestore';
 
 export default async function GetTweetsId(id) {
     const db = firebase.firestore();
-    const array = [];
-    await db.collection(`${id}Tweets`).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          array.push(doc.id);
-        });
-    });
+    const snapshot = await db
+    .collection(`${id}Tweets`)
+    .get();
+
     return {
-        TweetsId: array,
+        TweetsId: snapshot.docs.map((doc) => doc.id),
     };
 }

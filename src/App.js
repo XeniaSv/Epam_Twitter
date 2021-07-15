@@ -7,10 +7,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import FirstPage from './pages/FirstPage';
 import TwittPage from './pages/TwittPage';
 
-window.onhashchange = function() {
-  location.reload();
-}
-
 class App extends React.Component {
     render() {
         return (

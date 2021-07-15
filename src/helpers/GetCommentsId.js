@@ -1,3 +1,5 @@
+import CompareObjects from './CompareObjects';
+
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -8,5 +10,5 @@ export default async function GetCommentsId(userId, tweetId) {
     .collection('Comments')
     .get();
 
-    return snapshot.docs.map((doc) => doc.id);
+    return snapshot.docs.sort(CompareObjects).map((doc) => doc.id);
 }

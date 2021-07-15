@@ -1,7 +1,10 @@
+import AddPhoto from '../components/AddPhoto';
 import Comment from '../components/Comment';
-
+import CommentField from '../components/CommentField';
 import GetCommentsId from '../helpers/GetCommentsId';
 import GetTweetData from '../helpers/GetTweetData';
+
+import SetCommentData from '../helpers/SetCommentData';
 
 import '../pages/TwittPage.css';
 
@@ -71,6 +74,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '5px',
     color: grey[600],
   },
+
+  hr: {
+    backgroundColor: '#9e9e9e',
+    opacity: '0.5',
+    marginTop: '30px',
+  },
 }));
 
 function RecipeReviewCard(props) {
@@ -99,6 +108,39 @@ function RecipeReviewCard(props) {
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  let childDataName;
+  let childDataComment;
+  let childDataPhoto;
+
+  const handleChildName = (childData) => {
+    childDataName = childData;
+  };
+
+  const handleChildComment = (childData) => {
+    childDataComment = childData;
+  };
+
+  const handleChildPhoto = (childData) => {
+    childDataPhoto = childData;
+  };
+
+  const handleChildEnter = async () => {
+    if (childDataName !== undefined
+      && childDataComment !== undefined
+      && childDataPhoto !== undefined) {
+        const newCommentId = await SetCommentData(userId,
+          docId,
+          childDataName,
+          childDataPhoto,
+          childDataComment);
+        const arrayCopy = commentsState.slice();
+        arrayCopy.push(newCommentId);
+        setCommentsState(arrayCopy);
+    } else {
+        alert('Вы должны заполнить все поля');
+    }
   };
 
   const returnImage = () => {
@@ -164,6 +206,15 @@ function RecipeReviewCard(props) {
             {commentsState.map((id) => (
               <Comment userId={userId} tweetId={docId} commentId={id} />
             ))}
+            <hr className={classes.hr} />
+            <AddPhoto
+              parentCallbackPhoto={handleChildPhoto}
+            />
+            <CommentField
+              parentCallbackName={handleChildName}
+              parentCallbackComment={handleChildComment}
+              parentCallbackEnter={handleChildEnter}
+            />
           </Typography>
         </CardContent>
       </Collapse>

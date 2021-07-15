@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
 
-export default async function GetUsersData() {
+export default async function GetUsersId() {
   const db = firebase.firestore();
   const snapshot = await db.collection('users')
   .get();

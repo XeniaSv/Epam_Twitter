@@ -1,3 +1,5 @@
+import CompareObjects from './CompareObjects';
+
 import firebase from 'firebase';
 import 'firebase/firestore';
 
@@ -8,6 +10,6 @@ export default async function GetTweetsId(id) {
     .get();
 
     return {
-        TweetsId: snapshot.docs.map((doc) => doc.id),
+        TweetsId: snapshot.docs.sort(CompareObjects).reverse().map((doc) => doc.id),
     };
 }

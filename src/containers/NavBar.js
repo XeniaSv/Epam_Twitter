@@ -24,7 +24,7 @@ export default function SearchAppBar() {
           edge="start"
           className={classes.menuButton}
           color="inheru"
-          href={`${process.env.PUBLIC_URL}${pathHome}`}
+          href={`${process.env.PUBLIC_URL}#${pathHome}`}
         >
           <ArrowBackIosIcon />
         </IconButton>

@@ -1,5 +1,5 @@
 import { pathSearch } from '../config';
-import GetUsersData from '../helpers/GetUsersData';
+import GetUsersId from '../helpers/GetUsersId';
 
 import Button from '@material-ui/core/Button';
 import blue from '@material-ui/core/colors/blue';
@@ -27,7 +27,7 @@ class SearchButton extends React.Component {
   }
 
   async componentDidMount() {
-    const array = await GetUsersData();
+    const array = await GetUsersId();
     this.setState({ users: array });
   }
 
@@ -41,7 +41,8 @@ class SearchButton extends React.Component {
       value.length !== 0
       && users.some((doc) => doc.id === value)
     ) {
-      window.open(`${process.env.PUBLIC_URL}${pathSearch}?searchValue=${value}`, '_self');
+      window.open(`${process.env.PUBLIC_URL}#${pathSearch}?searchValue=${value}`, '_self');
+      window.location.reload();
     } else if (
       value.length !== 0
     ) {

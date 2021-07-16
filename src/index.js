@@ -1,6 +1,11 @@
-import App from './App';
+// import App from './App';
+
+import { pathHome, pathSearch } from './config';
 
 import './index.css';
+
+import FirstPage from './pages/FirstPage';
+import TwittPage from './pages/TwittPage';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -10,7 +15,7 @@ import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Route, Redirect } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCdxtxrAle5FDE33LpqKFSSfVn5Kysvfic',
@@ -24,11 +29,13 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({ forceRefresh: true });
 
 ReactDOM.render(
-  <Router history={history} basename={process.env.PUBLIC_URL}>
-    <App />
+  <Router history={history}>
+    <Route path={pathHome} component={FirstPage} />
+    <Route path={pathSearch} component={TwittPage} />
+    <Redirect from="/" to={pathHome} />
   </Router>,
   document.getElementById('root'),
 );

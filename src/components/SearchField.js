@@ -1,37 +1,33 @@
 import { pathSearch } from '../config';
-import GetUsersData from '../helpers/GetUsersData';
+import GetUsersId from '../helpers/GetUsersId';
 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import PropTypes from 'prop-types';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-class SearchField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-    };
-    this.className = props.className;
-  }
+export default function SearchField(props) {
+  const [state, setState] = useState([]);
 
-  async componentDidMount() {
-    const array = await GetUsersData();
-    console.log(array);
-    this.setState({ users: array });
-  }
+  const { className } = props;
 
-  keyPress = (e) => {
+  useEffect(async () => {
+    setState(await GetUsersId());
+  }, []);
+
+  const history = useHistory();
+
+  const keyPress = (e) => {
     const value = e.target.value.trim();
-    const { users } = this.state;
     if (
       e.keyCode === 13
       && value.length !== 0
-      && users.some((doc) => doc.id === value)
+      && state.some((doc) => doc.id === value)
     ) {
-      window.open(`${process.env.PUBLIC_URL}${pathSearch}?searchValue=${value}`, '_self');
+      history.push(`${pathSearch}?searchValue=${value}`);
     } else if (
       e.keyCode === 13
       && value.length !== 0
@@ -40,26 +36,23 @@ class SearchField extends React.Component {
     }
   };
 
-  render() {
-    const { users } = this.state;
-    return (
-      <Autocomplete
-        className={this.className}
-        disableClearable
-        autoComplete
-        freeSolo
-        options={users.map((user) => user.id)}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Поиск"
-            onKeyDown={this.keyPress}
-            InputProps={{ ...params.InputProps, type: 'search' }}
-          />
-        )}
-      />
-    );
-  }
+  return (
+    <Autocomplete
+      className={className}
+      disableClearable
+      autoComplete
+      freeSolo
+      options={state.map((user) => user.id)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Поиск"
+          onKeyDown={keyPress}
+          InputProps={{ ...params.InputProps, type: 'search' }}
+        />
+      )}
+    />
+  );
 }
 
 SearchField.defaultProps = {
@@ -69,5 +62,3 @@ SearchField.defaultProps = {
 SearchField.propTypes = {
   className: PropTypes.string,
 };
-
-export default SearchField;

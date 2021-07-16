@@ -15,15 +15,13 @@ function QuoteCheck(quote) {
 
 export default async function GetUserData(id) {
     const db = firebase.firestore();
-    let data;
-    let date;
-    await db.collection('users')
-      .doc(id)
-      .get()
-      .then((doc) => {
-        data = doc.data();
-        date = moment(data.Joined.seconds * 1000).format('MMMM YYYY');
-    });
+    const doc = await db
+    .collection('users')
+    .doc(id)
+    .get();
+
+    const data = doc.data();
+    const date = moment(data.Joined.seconds * 1000).format('MMMM YYYY');
 
     return {
         Name: data.Name,
